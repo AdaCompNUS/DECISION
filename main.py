@@ -29,7 +29,7 @@ if __name__ == '__main__':
     parser.add_argument('--intent-feat', help='whether or not to use intention features', type=bool, default=True)
     parser.add_argument('--num-modes', type=bool, default=4)
     parser.add_argument('--exp-log-path', help='path to log experiment data', type=str, default='exp/inet')
-    parser.add_argument('--dataset-path', help='path to dataset', type=str, default='/home/aibo/dataset_v17_convlstm')
+    parser.add_argument('--dataset-path', help='path to dataset', type=str, default='sample_dataset')
     parser.add_argument('--downsample-ratio', help='the ratio by which to downsample particular samples in the dataset',
                         type=int, default=0.1)
 
@@ -45,8 +45,8 @@ if __name__ == '__main__':
     writer = SummaryWriter(os.path.join(args.exp_log_path, 'board'))
     exp_dir = f'exp_data/inet'
     os.makedirs(args.exp_log_path, exist_ok=True)
-    train_anno_path = os.path.join(args.dataset_path, 'nas_train_v13.txt')
-    val_anno_path = os.path.join(args.dataset_path, 'nas_val_v13.txt')
+    train_anno_path = os.path.join(args.dataset_path, 'train.txt')
+    val_anno_path = os.path.join(args.dataset_path, 'test.txt')
 
     # data loaders
     image_shape = (args.input_size, args.input_size * NUM_VIEWS)
