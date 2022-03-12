@@ -36,5 +36,10 @@ The default hyperparameters may not be optimal. Refer to the below tips for repr
 
 ## Citation
 ```bibtex
-Will be available soon. 
+@article{ai2021end,
+  title={Deep Visual Navigation under Partial Observability},
+  author={Ai, Bo and Gao, Wei and Hsu, David and others},
+  journal={arXiv preprint arXiv:2109.07752},
+  year={2021}
+}
 ```
