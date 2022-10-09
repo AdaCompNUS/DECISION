@@ -36,10 +36,14 @@ The default hyperparameters may not be optimal. Refer to the below tips for repr
 
 ## Citation
 ```bibtex
-@article{ai2021,
-  title={Deep Visual Navigation under Partial Observability},
-  author={Ai, Bo and Gao, Wei and Hsu, David and others},
-  journal={arXiv preprint arXiv:2109.07752},
-  year={2021}
-}
+@INPROCEEDINGS{9811598,
+  author={Ai, Bo and Gao, Wei and Vinay and Hsu, David},
+  booktitle={2022 International Conference on Robotics and Automation (ICRA)}, 
+  title={Deep Visual Navigation under Partial Observability}, 
+  year={2022},
+  volume={},
+  number={},
+  pages={9439-9446},
+  doi={10.1109/ICRA46639.2022.9811598}
+ }
 ```
