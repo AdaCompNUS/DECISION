@@ -14,7 +14,7 @@ from train import train_inet, train_decision
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=f'Training INet models')
     parser.add_argument('--model', type=str, help='the cuda devices used for training',
-                        choices=['inet, lstm, decision'], default='decision')
+                        choices=['inet', 'lstm', 'decision'], default='decision')
     parser.add_argument('--modes', type=int, help='number of modes', default=4)
     parser.add_argument('--k1', type=int, help='value of k1 for TBPTT', default=2)
     parser.add_argument('--k2-n', type=int, help='the multiplicative factor of k1 to obtain k2 in TBPTT', default=5)
@@ -27,7 +27,7 @@ if __name__ == '__main__':
     parser.add_argument('--frame-interval', help='sample 1 frame every x frames', type=int, default=1)
     parser.add_argument('--dropout', type=int, default=0.7)
     parser.add_argument('--intent-feat', help='whether or not to use intention features', type=bool, default=True)
-    parser.add_argument('--num-modes', type=bool, default=4)
+    parser.add_argument('--num-modes', type=int, default=4)
     parser.add_argument('--exp-log-path', help='path to log experiment data', type=str, default='exp/inet')
     parser.add_argument('--dataset-path', help='path to dataset', type=str, default='sample_dataset')
     parser.add_argument('--downsample-ratio', help='the ratio by which to downsample particular samples in the dataset',
