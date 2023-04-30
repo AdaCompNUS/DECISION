@@ -354,17 +354,18 @@ class BatchSampler(Sampler):
         # self.train_set.init_dataset()   # bugs here? Batch intention messed up. Manual init preferred.
         self.forward, self.left, self.right, self.elevator = self.group_samples()
         if self.shuffle_on:
-            self.shuffle()
-        all_groups = []
+            self.shuffle()        
+        batch_lists = []
         for group in [self.forward, self.left, self.right, self.elevator]:
             # for each group. easy samples at first when no shuffle
             for value in group.values():
-                all_groups.append(chunk_by_max_len(value, self.batch_size, drop_last=self.drop_last))
-        all = sum(all_groups, [])
+                batch_by_seq_len = chunk_by_max_len(value, self.batch_size, drop_last=self.drop_last)
+                for batch_list in batch_by_seq_len:
+                    batch_lists.append(batch_list)
         if self.shuffle_on:
-            random.shuffle(all)
-        all = sum(all, [])
-        return iter(all)
+            random.shuffle(batch_lists)
+        flattened = [idx for batch_list in batch_lists for idx in batch_list]
+        return iter(flattened)
 
     def __len__(self):
         return self.length
