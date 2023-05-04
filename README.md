@@ -34,6 +34,13 @@ The default hyperparameters may not be optimal. Refer to the below tips for repr
 * One key to leanring a policy that actually works is to adjust the dataset distribution via resampling. Finding the right resampling scheme requires trials and errors. The procedure is dataset-dependent and our implementation is in the ```SeqDataset``` class in ```dataset.py```. 
 * Using a small batch size (> 8 samples per GPU) may bring troubles. If you observe the test loss increases while training loss decreases, try using a larger batch size or commenting out ```model.eval()``` before evaluating. If this helps, the problem is the incorrect batch statistics tracked by the norm layers. Solutions: (1) Use a larger batch size. (2) Implement batch norm layers that synchronize statistics across GPUs (```nn.SyncBatchNorm``` might be useful, not tested yet). (3) Use [Group Norm](https://arxiv.org/abs/1803.08494) (```nn.GroupNorm```) for all layers and tune the hyperparam ```num_groups```. 
 
+## Examples
+To train the original I-Net, the following command can be run:
+`python main.py --dataset-path <path/to/dataset> --num-frames 1 --batch-size 128 --modes 3 --num-modes 3 --model inet --gpu 0,1`
+
+To switch to DECISION, it is necessary to ensure `num_frames > 1` to provide some history for the ConvLSTM to process. A suggestion is to run:
+`python main.py --dataset-path <path/to/dataset> --num-frames 35 --batch-size 32 --modes 3 --num-modes 3 --model decision --gpu 0,1`
+
 ## Citation
 ```bibtex
 @INPROCEEDINGS{9811598,
